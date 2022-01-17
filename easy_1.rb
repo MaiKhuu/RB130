@@ -102,6 +102,7 @@ end
 
 #------------------------------------
 
+=begin
 # True for Any?
 # https://launchschool.com/exercises/944b8310
 
@@ -109,9 +110,11 @@ def my_any?(arr) #Note that there is no explicit block argument
     arr.each { |item| return true if yield (item) }
     false
 end
+=end
 
 #------------------------------------
 
+=begin
 # True for All?
 # https://launchschool.com/exercises/9c2b1d27
 
@@ -119,9 +122,11 @@ def my_all?(arr)
     arr.each { |item| return false if !yield(item) }
     true
 end
+=end
 
 #------------------------------------
 
+=begin
 # True for None? 
 # https://launchschool.com/exercises/11204cc9
 
@@ -129,4 +134,42 @@ def my_none?(arr, &block)
     return false if my_any?(arr, &block)
     true
 end
+=end
 
+#------------------------------------
+
+=begin
+# True for One
+# https://launchschool.com/exercises/ea073d36
+
+def other_one?(arr, &block)
+    arr.each_with_index do |item, i| 
+        new_arr = arr.clone
+        new_arr.delete_at(i)
+        return true if yield(item) && my_none?(new_arr, &block)
+    end
+    false
+end
+
+def one?(arr)
+    count = 0
+    arr.each do |item|
+        count += 1 if yield(item)
+        return false if count == 2
+    end
+    count == 1
+end
+=end
+
+#------------------------------------
+
+=begin
+# Count item
+# https://launchschool.com/exercises/1318cb92
+
+def count(arr)
+    result = 0
+    arr.each {|item| result += 1 if yield(item)}
+    result
+end
+=end
